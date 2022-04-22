@@ -18,4 +18,15 @@ resource "aws_lightsail_instance" "srv" {
 }
 
 
+resource "aws_lightsail_instance_public_ports" "test" {
+  instance_name = aws_lightsail_instance.srv.name
+
+  port_info {
+    protocol  = "all"
+    from_port = 0
+    to_port   = 65535 
+  }
+}
+
+
 output "ipv4_address" { value = aws_lightsail_instance.srv.public_ip_address }
